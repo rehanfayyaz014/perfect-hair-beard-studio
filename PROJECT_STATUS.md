@@ -1,5 +1,17 @@
 # Project Status
 
+## Root Git Migration and Initial GitHub Push on 2026-11-02
+
+- Moved Git ownership from `frontend/.git` to the project root without rewriting the existing frontend history. The existing frontend commits remain in the repository history, and the physical `frontend/` and `backend/` folders were preserved.
+- Added the root `.gitignore` with protection for environment files, credentials, Python virtual environments, Node dependencies, build output, local databases, logs, uploads, and private keys while allowing `.env.example` and source migrations.
+- Updated `backend/README.md` to describe the current catalog, authentication, admin, gallery metadata, migration, credential, and Git-managed static-image approach.
+- Added the backend source, migrations, frontend subtree, root documentation, and safe configuration examples to the root repository. No `backend/.env`, virtual environment, `node_modules`, `.next`, local database, or generated output was committed.
+- Created commit `2eea7ae` with message `Unify frontend and backend under root repository` and pushed it normally to `origin/master`.
+- Follow-up status documentation commit is being recorded separately after the successful push.
+- No packages, database schemas, migrations, permissions, credentials, or application behavior were changed.
+- Verification: staged `git diff --cached --check` passed after removing one pre-existing trailing space in the initial migration header; staged filename security review found no prohibited local/generated files; remote `master` advanced from `0c36720` to `2eea7ae`.
+- Next task: review the root repository on GitHub and configure deployment only after confirming the backend environment, database migrations, permissions, and secrets are managed outside Git.
+
 ## Pre-Deployment Lint and Whitespace Fixes on 2026-11-01
 
 - Fixed the four React effect lint errors in [frontend/src/app/page.tsx](./frontend/src/app/page.tsx), [frontend/src/app/admin/categories/page.tsx](./frontend/src/app/admin/categories/page.tsx), [frontend/src/app/admin/services/page.tsx](./frontend/src/app/admin/services/page.tsx), and [frontend/src/app/admin/deals/page.tsx](./frontend/src/app/admin/deals/page.tsx) by using stable callbacks and dependency-safe deferred loading calls. Existing API requests and state behavior were preserved.
