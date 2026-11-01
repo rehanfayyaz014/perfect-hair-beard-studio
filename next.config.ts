@@ -4,6 +4,15 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  allowedDevOrigins: ["192.168.18.22"],
+  async rewrites() {
+    return [
+      {
+        source: "/backend-api/:path*",
+        destination: `${process.env.CATALOG_API_PROXY_TARGET ?? "http://127.0.0.1:8000/api"}/:path*`,
+      },
+    ];
+  },
   turbopack: {
     rules: {
       "*.css": {
