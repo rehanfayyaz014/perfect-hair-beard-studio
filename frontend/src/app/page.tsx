@@ -247,7 +247,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#f8f7f4] text-[#101c35]">
       <div className="bg-[#101c35] px-4 py-2 text-center text-xs tracking-wide text-white">
         <span className="text-[#d9b879]">OPEN DAILY</span>
-        {" · "}08:00 AM – 09:00 PM
+        {" · "}08:00 AM – 12:00 AM
       </div>
 
       <header className="sticky top-0 z-50 border-b border-[#e8e3d9] bg-[#f8f7f4]/95 backdrop-blur-md">
@@ -718,7 +718,7 @@ export default function Home() {
             <div>
               <h3 className="font-semibold">Opening Hours</h3>
               <p className="mt-2 text-sm text-[#656565]">
-                Everyday · 08:00 AM – 09:00 PM
+                Everyday · 08:00 AM – 12:00 AM
               </p>
             </div>
           </div>

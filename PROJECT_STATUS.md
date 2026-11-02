@@ -1,5 +1,23 @@
 # Project Status
 
+## Next.js Development Indicator Hidden on 2026-11-02
+
+- Confirmed the orange circular `N` at the bottom-left was Next.js 16.4.1's development indicator / Dev Tools button, not a homepage component.
+- Added `devIndicators: false` to [frontend/next.config.ts](./frontend/next.config.ts). This hides only the development indicator; application and build/runtime error reporting remain available.
+- Restarted the frontend development server and verified in the browser that the “Open Next.js Dev Tools” button, Next.js portal, and known indicator nodes were absent while the homepage remained rendered.
+- No packages, backend files, database data, permissions, credentials, or unrelated UI were changed.
+- Verification: `npx tsc --noEmit`, `npm run lint`, and `git diff --check` passed. Git only reported normal LF-to-CRLF working-tree warnings.
+- Next task: perform the planned production hosting/deployment verification without exposing local development tooling.
+
+## Network Catalog Loading Fix on 2026-11-02
+
+- Updated [frontend/next.config.ts](./frontend/next.config.ts) so the current LAN host `192.168.0.114` is included in `allowedDevOrigins`, while preserving the previously configured network origin.
+- Root cause: when the site was opened through the current LAN address, the stale Next.js development-origin allowlist prevented reliable client hydration. The page HTML loaded, but the client catalog effect did not run, so Services and Deals remained on their loading states and no browser catalog requests were sent.
+- Restarted the verified frontend Next.js development process after the configuration change. No backend, database, credentials, permissions, migrations, or dependencies were changed.
+- Browser verification passed at `http://192.168.0.114:3000`: catalog requests for categories, services, deals, and deal items returned HTTP 200; the loading states disappeared; Services and all five Deals rendered.
+- `npx tsc --noEmit`: passed. `git diff --check`: passed.
+- Next task: replace the development-only LAN allowlist with deployment-specific configuration before production hosting, and verify the deployed API origin separately.
+
 ## Root Git Migration and Initial GitHub Push on 2026-11-02
 
 - Moved Git ownership from `frontend/.git` to the project root without rewriting the existing frontend history. The existing frontend commits remain in the repository history, and the physical `frontend/` and `backend/` folders were preserved.

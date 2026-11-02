@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
-  allowedDevOrigins: ["192.168.18.22"],
+  devIndicators: false,
+  allowedDevOrigins: ["192.168.0.114", "192.168.18.22"],
   async rewrites() {
     return [
       {
